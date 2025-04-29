@@ -23,8 +23,8 @@
 
 ### css样式选择的优先级
  - 内联样式 > ID选择器 > 类/属性/伪类选择器(:, eg: :hover) > 元素/伪元素选择器（::, eg: ::before）
- - 空格： #spec .active 匹配#spec元素的后代元素
- - ，： #spec, .active 匹配这两个选择器
+ - __空格__： #spec .active 匹配#spec元素的后代元素
+ - __，__： #spec, .active 匹配这两个选择器
  ``` html
 
  <!-- index.html -->

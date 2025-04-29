@@ -97,3 +97,47 @@
 // parallel([1, 2, 3, 4, 5, 6], task, 2).then((result) => {
 //   console.log('++++', result)
 // })
+
+
+interface SingleNode {
+  value: number;
+  next: SingleNode | null
+}
+function linkSort(linkNode: SingleNode, next?: SingleNode): SingleNode {
+  // const headNode = {
+  //   value: 0,
+  //   next: linkNode,
+  // }
+  // let currNode = 
+
+  if (!linkNode.next) {
+    return linkNode;
+  }
+
+  let pivot = quickSort1(linkNode, linkNode.next);
+  if (pivot !== linkNode) {
+    let currNext = pivot;
+    while (currNext.next !== pivot) {
+      currNext = currNext.next
+    }
+    currNext.next = null;
+    linkNode = linkSort(linkNode, currNext)
+  }
+  pivot.next = linkSort(pivot.next, next)
+  return linkNode;
+}
+
+function quickSort1(head, tail) {
+  let pivot = head;
+  let current = head.next;
+  let prev = head;
+  while (current !== tail ) {
+    if (current.value < pivot.value) {
+      prev = prev.next;
+      [prev.value, current.value] = [current.value, prev.value];
+    }
+    current = current.next;
+  }
+  [pivot.value, prev.value] = [prev.value, pivot.value];
+  return prev;
+}
